@@ -13,9 +13,9 @@ Uses [raven-clj](https://github.com/sethtrain/raven-clj) under the hood.
 ;; Wrap the routes in your endpoint in the Sentry
 (defn my-endpoint [{:keys [exceptions]}]
   (protect
+    exceptions
     (compojure/routes
-      (GET ...))
-    (:dsn exceptions)))
+      (GET ...))))
 
 ;; Create your system map
 (-> (c/system-map
@@ -24,6 +24,20 @@ Uses [raven-clj](https://github.com/sethtrain/raven-clj) under the hood.
       (c/system-using
         {:endpoint [:exceptions]
          :exceptions []})))
+```
+
+There is also a `SentryStub` component:
+
+```clojure
+(sentry-stub {})
+;; => #ring.component.sentry.SentryStub{:dsn nil}
+```
+
+Calling `protect` while passing the stubbed component will print stdout using `clojure.tools.logging`:
+
+```clojure
+(protect stub handler)
+;; => SEVERE: Mocking exception to Sentry
 ```
 
 ## License
