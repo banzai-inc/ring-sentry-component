@@ -1,4 +1,4 @@
-(defproject ring-sentry-component "0.2.0"
+(defproject ring-sentry-component "0.2.1"
   :description "Ring component for Sentry following the Reloadable pattern"
   :url "https://github.com/banzai-inc/sentry-component"
   :license {:name "Eclipse Public License"

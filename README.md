@@ -4,6 +4,12 @@ Ring component for the Sentry exception handler. Provides middleware for wrappin
 
 Uses [raven-clj](https://github.com/sethtrain/raven-clj) under the hood.
 
+## Installation
+
+```clojure
+[ring-sentry-component "0.2.1"]
+```
+
 ## Usage
 
 ```clojure

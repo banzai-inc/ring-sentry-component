@@ -26,8 +26,12 @@
   (stop [this] this)
 
   Protect
-  (protect [_ _ _]
-    (error "Mocking exception to Sentry"))
+  (protect [_ handler _]
+    (try
+      (fn [req] (handler req))
+      (catch Exception e
+        (error "Mocking exception to Sentry")
+        (throw e))))
 
   (protect [this handler]
     (protect this handler {})))
