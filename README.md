@@ -7,7 +7,7 @@ Uses [raven-clj](https://github.com/sethtrain/raven-clj) under the hood.
 ## Installation
 
 ```clojure
-[ring-sentry-component "0.2.1"]
+[ring-sentry-component "0.3.0"]
 ```
 
 ## Usage
@@ -19,9 +19,10 @@ Uses [raven-clj](https://github.com/sethtrain/raven-clj) under the hood.
 ;; Wrap the routes in your endpoint in the Sentry
 (defn my-endpoint [{:keys [exceptions]}]
   (protect
-    exceptions
     (compojure/routes
-      (GET ...))))
+      (GET ...))
+    exceptions)
+    {:optional "See raven-clj for options"}) ;; optional
 
 ;; Create your system map
 (-> (c/system-map
